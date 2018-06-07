@@ -60,8 +60,28 @@
             android:textColor="#FF1D0F00"
             android:textSize="16sp"/>
     </LinearLayout>
-    <com.yuanjin.androidstudy.UI.calendarview3.weiget.CalendarView_Vertical
-        android:id="@+id/calendar"
+    <com.yuanjin.androidstudy.UI.calendarview2.DayPickerView
+        android:id="@+id/dpv_calendar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="match_parent"
+        app:colorCurrentDay="@color/colorAccent"
+        app:colorSelectedDayBackground="@color/colorAccent"
+        app:colorSelectedDayText="@color/selected_day_text"
+        app:colorPreviousDayText="#727272"
+        app:colorNormalDayText="#727272"
+        app:colorYearMonthText="#727272"
+        app:colorWeekText="#727272"
+        app:colorBusyDaysBg="#727272"
+        app:colorInValidDaysBg="#727272"
+        app:colorBusyDaysText="#FFFFFF"
+        app:colorInValidDaysText="#FFFFFF"
+
+        app:textSizeDay="14sp"
+        app:textSizeTag="12sp"
+        app:textSizeYearMonth="16sp"
+        app:textSizeWeek="14sp"
+        app:headerMonthHeight="50dp"
+        app:selectedDayRadius="20dp"
+        app:calendarHeight="320dp"
+        app:enablePreviousDay="false"/>
 </LinearLayout>

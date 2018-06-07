@@ -1,4 +1,4 @@
-package com.henry.calendarview;
+package com.yuanjin.androidstudy.UI.calendarview2;
 
 import android.content.Context;
 import android.content.res.Resources;
@@ -14,6 +14,9 @@ import android.text.format.DateUtils;
 import android.text.format.Time;
 import android.view.MotionEvent;
 import android.view.View;
+
+import com.yuanjin.androidstudy.R;
+import com.yuanjin.androidstudy.UI.calendarview2.SimpleMonthAdapter;
 
 import java.security.InvalidParameterException;
 import java.text.DateFormatSymbols;

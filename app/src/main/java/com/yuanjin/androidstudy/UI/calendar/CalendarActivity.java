@@ -2,14 +2,20 @@ package com.yuanjin.androidstudy.UI.calendar;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.Toast;
 
 import com.maning.calendarlibrary.MNCalendar;
 import com.maning.calendarlibrary.MNCalendarVertical;
 import com.maning.calendarlibrary.model.MNCalendarConfig;
 import com.maning.calendarlibrary.model.MNCalendarVerticalConfig;
 import com.yuanjin.androidstudy.R;
+import com.yuanjin.androidstudy.UI.calendarview2.DatePickerController;
+import com.yuanjin.androidstudy.UI.calendarview2.DayPickerView;
+import com.yuanjin.androidstudy.UI.calendarview2.SimpleMonthAdapter;
 import com.yuanjin.androidstudy.UI.calendarview3.weiget.CalendarView_Horizontal;
 import com.yuanjin.androidstudy.UI.calendarview3.weiget.CalendarView_Vertical;
+
+import java.util.List;
 
 public class CalendarActivity extends AppCompatActivity {
 
@@ -41,14 +47,14 @@ public class CalendarActivity extends AppCompatActivity {
 //                .build();
 //        calendar.setConfig(mnCalendarVerticalConfig);
 
-        CalendarView_Vertical calendarViewHorizontal = (CalendarView_Vertical) findViewById(R.id.calendar);
-//日历init，年月日之间用点号隔开
-        calendarViewHorizontal
-                .setStartEndDate("2010.7", "2018.12")
-                .setInitDate("2017.11")
-                .setSingleDate("2017.12.12")
-                .setDisableStartEndDate("2017.12.1","2017.12.22")
-                .init();
+//        CalendarView_Vertical calendarViewHorizontal = (CalendarView_Vertical) findViewById(R.id.calendar);
+////日历init，年月日之间用点号隔开
+//        calendarViewHorizontal
+//                .setStartEndDate("2010.7", "2018.12")
+//                .setInitDate("2017.11")
+//                .setSingleDate("2017.12.12")
+//                .setDisableStartEndDate("2017.12.1","2017.12.22")
+//                .init();
 
 //        RecyclerView recyclerView = findViewById(R.id.list);
 //        List<Object> list = new ArrayList<>();
@@ -56,5 +62,31 @@ public class CalendarActivity extends AppCompatActivity {
 //        list.add("");
 //        list.add("");
 //        recyclerView.setAdapter(new CalendarAdapter(this,R.layout.item_calendar,list));
+
+        DayPickerView.DataModel dataModel = new DayPickerView.DataModel();
+        dataModel.yearStart = 2016;
+        dataModel.monthStart = 6;
+        dataModel.monthCount = 16;
+        dataModel.defTag = "￥100";
+        dataModel.leastDaysNum = 2;
+        dataModel.mostDaysNum = 100;
+
+        DayPickerView dayPickerView = findViewById(R.id.dpv_calendar);
+        dayPickerView.setParameter(dataModel, new DatePickerController() {
+            @Override
+            public void onDayOfMonthSelected(SimpleMonthAdapter.CalendarDay calendarDay) {
+                Toast.makeText(CalendarActivity.this, "onDayOfMonthSelected", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onDateRangeSelected(List<SimpleMonthAdapter.CalendarDay> selectedDays) {
+                Toast.makeText(CalendarActivity.this, "onDateRangeSelected", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void alertSelectedFail(FailEven even) {
+                Toast.makeText(CalendarActivity.this, "alertSelectedFail", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }
