@@ -73,11 +73,11 @@ public class BaseCalendar extends View {
     public BaseCalendar(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         initPaint();
-        initDate();
+//        initDate();
     }
 
-    private void initDate() {
-        titleTimeStr = timeUtil1.getshowyear() + "年" + (timeUtil1.getshowmouth() + 1) + "月";
+    public String getCalendarTitle() {
+        return timeUtil1.getshowyear() + "年" + (timeUtil1.getshowmouth() + 1) + "月";
     }
 
     private void initPaint() {
@@ -93,7 +93,7 @@ public class BaseCalendar extends View {
         headHeight = (h - contentHeight) / 1.5f;
         weekViewHeight = (h - contentHeight) / 2.5f;
         weekPointF = new PointF(0, headHeight);
-        contentPointF = new PointF(0, headHeight + weekViewHeight);
+        contentPointF = new PointF(0,weekViewHeight);
         contentBaseBlockSize = viewWidth / 7;
     }
 
@@ -101,7 +101,7 @@ public class BaseCalendar extends View {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
 
-        drawTitle(canvas);
+//        drawTitle(canvas);
 //        drawWeekText(canvas);
         drawBlock(canvas);
     }
@@ -332,7 +332,7 @@ public class BaseCalendar extends View {
      *
      * @param addMonth
      */
-    private void changeMonth(boolean addMonth) {
+    public void changeMonth(boolean addMonth) {
         if (addMonth) {
             changemouth++;
         } else {

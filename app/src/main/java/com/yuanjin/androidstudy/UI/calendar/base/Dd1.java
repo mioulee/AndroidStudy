@@ -1,5 +1,7 @@
 package com.yuanjin.androidstudy.UI.calendar.base;
 
+import java.util.Date;
+
 public class Dd1 {
 	/**
 	 * 不在本月的日期
@@ -18,6 +20,8 @@ public class Dd1 {
 	 */
 	public int d;
 	int index;
+
+	public Date date;
 
 	/**
 	 * 是否是同一日期

@@ -19,6 +19,10 @@ public class CalendarAdapter extends CommonAdapter {
     @Override
     protected void convert(ViewHolder holder, Object o, int position) {
         MoreSelectCalendar calendar = holder.getView(R.id.dd);
+        for (int i = 0; i < position; i++) {
+            calendar.changeMonth(true);
+        }
         calendar.setBaseBlock(new MoreSelectBlock());
+        holder.setText(R.id.tv,calendar.getCalendarTitle());
     }
 }

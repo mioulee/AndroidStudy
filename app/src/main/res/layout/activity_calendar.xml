@@ -60,9 +60,8 @@
             android:textColor="#FF1D0F00"
             android:textSize="16sp"/>
     </LinearLayout>
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/list"
+    <com.yuanjin.androidstudy.UI.calendarview3.weiget.CalendarView_Vertical
+        android:id="@+id/calendar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layoutManager="LinearLayoutManager"></android.support.v7.widget.RecyclerView>
+        android:layout_height="wrap_content" />
 </LinearLayout>

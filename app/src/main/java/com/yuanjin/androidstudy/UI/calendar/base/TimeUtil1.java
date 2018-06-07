@@ -76,6 +76,7 @@ public class TimeUtil1 {
 			dd.d = calendar.get(calendar.DAY_OF_MONTH);
 			dd.y = calendar.get(Calendar.YEAR);
 			dd.m = calendar.get(Calendar.MONTH);
+			dd.date = calendar.getTime();
 			list.add(dd);
 		}
 		calendar.set(n, y, 1, 0, 0, 0);

@@ -40,7 +40,7 @@ public class MoreSelectCalendar extends BaseCalendar {
      */
     @Override
     public void onClickListener(Dd1 SelectDd1) {
-        Log.e(TAG, "onClickListener: "+SelectDd1.d);
+        Log.e(TAG, "onClickListener: "+SelectDd1.date);
         selectDd1s.add(SelectDd1);
         invalidate();
     }
