@@ -10,11 +10,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".MainActivity" />
-        <activity android:name=".UI.shimmer.ShimmerActivity">
-
-        </activity>
+        <activity android:name=".UI.shimmer.ShimmerActivity" />
         <activity android:name=".UI.rollingnumber.RollingNumActivity" />
-        <activity android:name=".UI.calendar.CalendarActivity">
+        <activity android:name=".KtolinSampleActivity" />
+        <activity android:name=".UI.explosianimation.ExplosionAnimatorActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

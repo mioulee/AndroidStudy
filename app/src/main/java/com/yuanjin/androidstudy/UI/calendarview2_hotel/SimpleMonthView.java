@@ -1,4 +1,4 @@
-package com.yuanjin.androidstudy.UI.calendarview2;
+package com.yuanjin.androidstudy.UI.calendarview2_hotel;
 
 import android.content.Context;
 import android.content.res.Resources;
@@ -10,13 +10,15 @@ import android.graphics.Paint.Align;
 import android.graphics.Paint.Style;
 import android.graphics.RectF;
 import android.graphics.Typeface;
+import android.support.annotation.Nullable;
 import android.text.format.DateUtils;
 import android.text.format.Time;
+import android.util.AttributeSet;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 
 import com.yuanjin.androidstudy.R;
-import com.yuanjin.androidstudy.UI.calendarview2.SimpleMonthAdapter;
 
 import java.security.InvalidParameterException;
 import java.text.DateFormatSymbols;
@@ -29,12 +31,12 @@ import java.util.Locale;
  * 每个月作为一个ItemView
  */
 class SimpleMonthView extends View {
-
+    private String TAG = "SimpleMonthView";
     public static final String VIEW_PARAMS_SELECTED_BEGIN_DATE = "selected_begin_date";
     public static final String VIEW_PARAMS_SELECTED_LAST_DATE = "selected_last_date";
     public static final String VIEW_PARAMS_NEAREST_DATE = "mNearestDay";
 
-//    public static final String VIEW_PARAMS_HEIGHT = "height";
+    //    public static final String VIEW_PARAMS_HEIGHT = "height";
     public static final String VIEW_PARAMS_MONTH = "month";
     public static final String VIEW_PARAMS_YEAR = "year";
     public static final String VIEW_PARAMS_WEEK_START = "week_start";
@@ -47,7 +49,7 @@ class SimpleMonthView extends View {
     protected static int MINI_DAY_NUMBER_TEXT_SIZE;                     // 日期字体的最小尺寸
     private static int TAG_TEXT_SIZE;                                   // 标签字体大小
     protected static int MIN_HEIGHT = 10;                               // 最小高度
-//    protected static int MONTH_DAY_LABEL_TEXT_SIZE;                     // 头部的星期几的字体大小
+    //    protected static int MONTH_DAY_LABEL_TEXT_SIZE;                     // 头部的星期几的字体大小
     protected static int MONTH_HEADER_SIZE;                             // 头部的高度（包括年份月份，星期几）
     protected static int YEAR_MONTH_TEXT_SIZE;                         // 头部年份月份的字体大小
     protected static int WEEK_TEXT_SIZE;                                // 头部年份月份的字体大小
@@ -68,16 +70,16 @@ class SimpleMonthView extends View {
     protected Paint mWeekTextPaint;                     // 头部星期几的字体画笔
     protected Paint mDayTextPaint;
     protected Paint mTagTextPaint;                      // 日期底部的文字画笔
-//    protected Paint mTitleBGPaint;
+    //    protected Paint mTitleBGPaint;
     protected Paint mYearMonthPaint;                    // 头部的画笔
     protected Paint mSelectedDayBgPaint;
     protected Paint mBusyDayBgPaint;
     protected Paint mInValidDayBgPaint;
-//    protected Paint mSelectedDayTextPaint;
+    //    protected Paint mSelectedDayTextPaint;
     protected int mCurrentDayTextColor;                 // 今天的字体颜色
     protected int mYearMonthTextColor;                  // 头部年份和月份字体颜色
     protected int mWeekTextColor;                       // 头部星期几字体颜色
-//    protected int mDayTextColor;
+    //    protected int mDayTextColor;
     protected int mDayTextColor;                        // 日期字体颜色
     protected int mSelectedDayTextColor;                // 被选中的日期字体颜色
     protected int mPreviousDayTextColor;                // 过去的字体颜色
@@ -87,7 +89,7 @@ class SimpleMonthView extends View {
     protected int mBusyDaysTextColor;                     // 被占用的日期字体颜色
     protected int mInValidDaysTextColor;                  // 禁用的日期字体颜色
 
-    private final StringBuilder mStringBuilder;
+    private StringBuilder mStringBuilder;
 
     protected boolean mHasToday = false;
     protected int mToday = -1;
@@ -95,17 +97,17 @@ class SimpleMonthView extends View {
     protected int mNumDays = 7;                 // 一行几列
     protected int mNumCells;                    // 一个月有多少天
     private int mDayOfWeekStart = 0;            // 日期对应星期几
-//    protected Boolean mDrawRect;              // 圆角还是圆形
+    //    protected Boolean mDrawRect;              // 圆角还是圆形
     protected int mRowHeight = DEFAULT_HEIGHT;  // 行高
     protected int mWidth;                       // simpleMonthView的宽度
 
     protected int mYear;
     protected int mMonth;
-    final Time today;
+    Time today;
 
-    private final Calendar mCalendar;
-    private final Calendar mDayLabelCalendar;           // 用于显示星期几
-    private final Boolean isPrevDayEnabled;             // 今天以前的日期是否能被操作
+    private Calendar mCalendar;
+    private Calendar mDayLabelCalendar;           // 用于显示星期几
+    private Boolean isPrevDayEnabled;             // 今天以前的日期是否能被操作
 
     private int mNumRows;
 
@@ -118,14 +120,29 @@ class SimpleMonthView extends View {
 
     SimpleMonthAdapter.CalendarDay cellCalendar;        // cell的对应的日期
 
+
+    public SimpleMonthView(Context context) {
+        this(context, null);
+    }
+
+    public SimpleMonthView(Context context, @Nullable AttributeSet attrs) {
+        this(context, attrs, 0);
+    }
+
+    public SimpleMonthView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
+        this(context, attrs, defStyleAttr, 0);
+    }
+
+    public SimpleMonthView(Context context, @Nullable AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+        super(context, attrs, defStyleAttr, defStyleRes);
+    }
+
     /**
      * @param context
      * @param typedArray
      * @param dataModel
      */
-    public SimpleMonthView(Context context, TypedArray typedArray, DayPickerView.DataModel dataModel) {
-        super(context);
-
+    public void init(Context context, TypedArray typedArray, DayPickerView.DataModel dataModel) {
         Resources resources = context.getResources();
         mDayLabelCalendar = Calendar.getInstance();
         mCalendar = Calendar.getInstance();
@@ -301,7 +318,7 @@ class SimpleMonthView extends View {
                 drawDayBg(canvas, x, y, mSelectedDayBgPaint);
                 mDayTextPaint.setColor(mSelectedDayTextColor);
                 canvas.drawText("入住", x, getTextYCenter(mDayTextPaint, y + DAY_SELECTED_RECT_SIZE / 2), mDayTextPaint);
-                if(isToady) {
+                if (isToady) {
                     canvas.drawText("今天", x, getTextYCenter(mDayTextPaint, y - DAY_SELECTED_RECT_SIZE / 2), mDayTextPaint);
                 }
             }
@@ -425,6 +442,7 @@ class SimpleMonthView extends View {
 
     /**
      * 根据坐标获取对应的日期
+     *
      * @param x
      * @param y
      * @return
@@ -549,8 +567,8 @@ class SimpleMonthView extends View {
 
     @Override
     protected void onDraw(Canvas canvas) {
-        drawMonthTitle(canvas);
-        drawMonthDayLabels(canvas);
+//        drawMonthTitle(canvas);
+//        drawMonthDayLabels(canvas);
         drawMonthCell(canvas);
     }
 
@@ -565,6 +583,7 @@ class SimpleMonthView extends View {
     }
 
     public boolean onTouchEvent(MotionEvent event) {
+        Log.d(TAG, "onTouchEvent: ");
         if (event.getAction() == MotionEvent.ACTION_UP) {
             SimpleMonthAdapter.CalendarDay calendarDay = getDayFromLocation(event.getX(), event.getY());
 //            boolean isValidDay = false;
@@ -676,6 +695,7 @@ class SimpleMonthView extends View {
 
     /**
      * 在使用drawText方法时文字不能根据y坐标居中，所以重新计算y坐标
+     *
      * @param paint
      * @param y
      * @return

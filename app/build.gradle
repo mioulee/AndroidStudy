@@ -1,11 +1,12 @@
 apply plugin: 'com.android.application'
 
+
 android {
     compileSdkVersion 26
     buildToolsVersion "26.0.1"
     defaultConfig {
         applicationId "com.yuanjin.androidstudy"
-        minSdkVersion 22
+        minSdkVersion 26
         targetSdkVersion 26
         versionCode 1
         versionName "1.0"
@@ -29,4 +30,8 @@ dependencies {
     compile 'com.android.support:design:26.1.0'
     testCompile 'junit:junit:4.12'
     compile project(':calendarlibrary')
+    compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
 }
+
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'

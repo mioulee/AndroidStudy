@@ -1,4 +1,4 @@
-package com.yuanjin.androidstudy.UI.calendarview2;
+package com.yuanjin.androidstudy.UI.calendarview2_hotel;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -7,10 +7,9 @@ import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
-import android.widget.AbsListView;
+import android.widget.LinearLayout;
 
 import com.yuanjin.androidstudy.R;
-import com.yuanjin.androidstudy.UI.calendarview2.DatePickerController;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -115,7 +114,8 @@ public class SimpleMonthAdapter extends RecyclerView.Adapter<SimpleMonthAdapter.
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-        final View view = View.inflate(mContext, R.layout.item_calendar,null);
+//        SimpleMonthView simpleMonthView = new SimpleMonthView(mContext,typedArray,dataModel);
+        View view  = View.inflate(mContext,R.layout.item_calendar,null);
         SimpleMonthView simpleMonthView = view.findViewById(R.id.dd);
         simpleMonthView.init(mContext,typedArray,dataModel);
         return new ViewHolder(view, this);
@@ -161,7 +161,7 @@ public class SimpleMonthAdapter extends RecyclerView.Adapter<SimpleMonthAdapter.
         public ViewHolder(View itemView, SimpleMonthView.OnDayClickListener onDayClickListener) {
             super(itemView);
             simpleMonthView = (SimpleMonthView) itemView.findViewById(R.id.dd);
-            simpleMonthView.setLayoutParams(new AbsListView.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
+            simpleMonthView.setLayoutParams(new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
             simpleMonthView.setClickable(true);
             simpleMonthView.setOnDayClickListener(onDayClickListener);
         }

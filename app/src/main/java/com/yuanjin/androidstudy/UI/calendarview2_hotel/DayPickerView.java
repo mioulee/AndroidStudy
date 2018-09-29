@@ -1,4 +1,4 @@
-package com.yuanjin.androidstudy.UI.calendarview2;
+package com.yuanjin.androidstudy.UI.calendarview2_hotel;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -8,8 +8,6 @@ import android.util.AttributeSet;
 import android.util.Log;
 
 import com.yuanjin.androidstudy.R;
-import com.yuanjin.androidstudy.UI.calendarview2.DatePickerController;
-import com.yuanjin.androidstudy.UI.calendarview2.SimpleMonthAdapter;
 
 import java.io.Serializable;
 import java.util.List;

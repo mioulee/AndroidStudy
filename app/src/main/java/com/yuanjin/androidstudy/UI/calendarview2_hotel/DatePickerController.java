@@ -1,4 +1,4 @@
-package com.yuanjin.androidstudy.UI.calendarview2;
+package com.yuanjin.androidstudy.UI.calendarview2_hotel;
 
 import java.util.List;
 
