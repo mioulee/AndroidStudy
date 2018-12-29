@@ -11,8 +11,6 @@ import android.widget.FrameLayout;
 import android.widget.ListView;
 
 /**
- * Created by lgh on 18-4-9.
- *
  * BottomSheetDialogListView
  * 1，能够在 BottomSheetDialog 分展开的情况下，滑动显示完整数据
  * 2，能够像网易云音乐一样，上滑的时候，避免触发 expend 状态

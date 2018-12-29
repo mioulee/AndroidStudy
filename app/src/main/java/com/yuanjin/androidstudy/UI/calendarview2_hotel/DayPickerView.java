@@ -12,6 +12,10 @@ import com.yuanjin.androidstudy.R;
 import java.io.Serializable;
 import java.util.List;
 
+/**
+ * https://github.com/henry-newbie/CalendarView
+ */
+
 public class DayPickerView extends RecyclerView {
     protected Context mContext;
     protected SimpleMonthAdapter mAdapter;
